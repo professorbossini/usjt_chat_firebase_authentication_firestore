@@ -1,0 +1,2 @@
+include ':app'
+rootProject.name='usjt_chat_firebase_authentication_firestore'

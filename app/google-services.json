@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "578219824103",
+    "firebase_url": "https://usjtchatfirebaseauthentication.firebaseio.com",
+    "project_id": "usjtchatfirebaseauthentication",
+    "storage_bucket": "usjtchatfirebaseauthentication.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:578219824103:android:747fffc58f5c8dc3bde342",
+        "android_client_info": {
+          "package_name": "br.com.bossini.usjt_chat_firebase_authentication_firestore"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "578219824103-8cv28prul1u9kfaptn7sop3b44upr6a8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.bossini.usjt_chat_firebase_authentication_firestore",
+            "certificate_hash": "16000449122ec5478b8e1b7f4ad61742510e2ca0"
+          }
+        },
+        {
+          "client_id": "578219824103-qmag00bvglvkc6iejqegpu7hojeh6mkt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYTRKdsif7l0oRluCR-j6xGiOl_yHny0g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "578219824103-qmag00bvglvkc6iejqegpu7hojeh6mkt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
