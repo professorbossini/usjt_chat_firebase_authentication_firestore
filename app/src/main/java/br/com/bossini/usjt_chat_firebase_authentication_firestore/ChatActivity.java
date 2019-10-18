@@ -6,14 +6,19 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -22,15 +27,20 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.annotation.Nullable;
 
 public class ChatActivity extends AppCompatActivity {
+
+
 
     private EditText mensagemEditText;
     private RecyclerView mensagensRecyclerView;
@@ -99,11 +109,13 @@ public class ChatActivity extends AppCompatActivity {
 class ChatViewHolder extends RecyclerView.ViewHolder{
     TextView dataNomeTextView;
     TextView mensagemTextView;
+    ImageView profilePicImageView;
 
     public ChatViewHolder (View v){
         super (v);
         dataNomeTextView = v.findViewById(R.id.dataNomeTextView);
         mensagemTextView = v.findViewById(R.id.mensagemTextView);
+        profilePicImageView = v.findViewById(R.id.profilePicImageView);
     }
 }
 
@@ -139,6 +151,30 @@ class ChatAdapter extends RecyclerView.Adapter <ChatViewHolder>{
                 )
         );
         holder.mensagemTextView.setText(m.getTexto());
+        StorageReference profilePicStorageReference =
+                FirebaseStorage.getInstance().getReference(
+                        String.format(
+                                Locale.getDefault(),
+                                "images/%s/profilePic.jpg",
+                                m.
+                                getUsuario().
+                                replace("@", "")
+                        )
+                );
+
+        profilePicStorageReference.getDownloadUrl().addOnSuccessListener(
+                (result) -> {
+                    Glide.
+                            with(context).
+                            load(profilePicStorageReference).
+                            into(holder.profilePicImageView);
+                }
+        ).addOnFailureListener((failure) -> {
+
+            holder.profilePicImageView.setImageResource(
+                    R.drawable.ic_person_black_50dp);
+        });
+
     }
 
     @Override
